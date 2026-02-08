@@ -1,0 +1,41 @@
+version: 2
+project_name: p110
+
+builds:
+  - id: p110
+    binary: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}_{{ .Tag }}'
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    main: ./cmd/p110/
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - id: p110-archive
+    formats: binary
+    wrap_in_directory: false
+    strip_binary_directory: true
+    name_template: '{{ .ProjectName }}_{{ .Os }}_{{ .Arch }}_{{ .Tag }}'
+
+checksum:
+  name_template: 'checksums.txt'
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+release:
+  prerelease: auto
