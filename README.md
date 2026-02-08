@@ -59,6 +59,16 @@ export TAPO_PASSWORD="your-password"
 ./p110 -raw
 ```
 
+### Device Control
+
+```bash
+# Turn device on
+./p110 -ip 192.168.1.100 -on
+
+# Turn device off
+./p110 -ip 192.168.1.100 -off
+```
+
 ### Cost Calculation
 
 ```bash
@@ -112,6 +122,8 @@ The daemon:
 | `-ip` | (auto-discover) | Device IP address |
 | `-all` | false | Query all discovered devices |
 | `-discover` | false | Only list devices, don't connect |
+| `-on` | false | Turn device on (requires -ip) |
+| `-off` | false | Turn device off (requires -ip) |
 | `-json` | false | JSON output format |
 | `-raw` | false | Verbose raw output |
 | `-rate` | 0 | Electricity rate per kWh |

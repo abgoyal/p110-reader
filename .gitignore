@@ -1,6 +1,6 @@
 # Binary
-p110
-p110.exe
+/p110
+/p110.exe
 
 # Database files
 *.db
